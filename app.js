@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'))
 
 const router = require('./routers')
-app.use('', router)
+app.use('/', router)
 
-app.listen(PORT, () => { console.log(`Server run at http://localhost:${PORT}`) })
+app.listen(PORT, () => {
+  console.log(`App listening at http://localhost:${PORT}`)
+})

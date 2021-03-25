@@ -27,13 +27,26 @@ module.exports = (sequelize, DataTypes) => {
 
   Transaction.beforeCreate((instance, opt) => {
     if(!instance.totalPrice) {
-      if (instance.ItemId === 13) {
+      if (instance.ItemId === 1) {
         instance.totalPrice = instance.quantity * 18000000
-      } else if (instance.ItemId === 14) {
+      } else if (instance.ItemId === 2) {
         instance.totalPrice = instance.quantity * 15000000
-      } else if (instance.ItemId === 15) {
+      } else if (instance.ItemId === 3) {
         instance.totalPrice = instance.quantity * 12000000
-      } else if (instance.ItemId === 16) {
+      } else if (instance.ItemId === 4) {
+        instance.totalPrice = instance.quantity * 20000000
+      }
+    }
+  })
+  Transaction.beforeUpdate((instance, opt) => {
+    if(!instance.totalPrice) {
+      if (instance.ItemId === 1) {
+        instance.totalPrice = instance.quantity * 18000000
+      } else if (instance.ItemId === 2) {
+        instance.totalPrice = instance.quantity * 15000000
+      } else if (instance.ItemId === 3) {
+        instance.totalPrice = instance.quantity * 12000000
+      } else if (instance.ItemId === 4) {
         instance.totalPrice = instance.quantity * 20000000
       }
     }
