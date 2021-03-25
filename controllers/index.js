@@ -112,13 +112,12 @@ class Controller {
             UserId: req.session.userId,
             quantity: +req.body.quantity,
             paid_status: false,
-            TransactionId: +id
+            TransactionId: +id,
+            totalPrice: req.body.totalPrice
         }
-
         // console.log(req.session)
-        // res.send(order)
-
         Transaction.create(order)
+        // res.send(order)
             .then(() => res.redirect("/"))
             .catch(err => res.send(err))
     }
