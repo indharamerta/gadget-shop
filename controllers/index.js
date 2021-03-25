@@ -244,10 +244,16 @@ class Controller {
 
   static editPost(req, res) {
     let TransactionId = +req.params.id_product;
-    let value = { quantity: +req.body.quantity };
-    Transaction.update(value, {
-      where: { TransactionId },
-    })
+    Transaction.findOne({where: { TransactionId }})
+      .then((data) => {
+        let value = {
+          ItemId: data.ItemId,
+          quantity: +req.body.quantity };
+        Transaction.update(value, {
+          where: { TransactionId },
+          individualHooks: true
+        })
+      })
       .then(() => res.redirect("/cart"))
       .catch((err) => res.send(err));
   }
