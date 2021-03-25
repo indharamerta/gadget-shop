@@ -175,13 +175,13 @@ class Controller {
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
-                            user: 'pphacktiv8',
+                            user: 'pairprojectGadgetShop',
                             pass: 'h8PairProject'
                         }
                     });
 
                     let message = {
-                        from: "pphacktiv8",
+                        from: "pairprojectGadgetShop",
                         to: req.session.userEmail,
                         subject: "Thank you for Shopping",
                         html: "<b><h3>Enjoy it with new Phone</h3></b>"
