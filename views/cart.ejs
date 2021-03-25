@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carts</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            /* background-color: yellow; */
+        }
+
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url("https://images.squarespace-cdn.com/content/v1/5570a318e4b02d3071ca7d2b/1546899929819-ATM3NQV1WJPGQU61M25V/ke17ZwdGBToddI8pDm48kGit3PbRBnY1AnbAN1sF0EYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dsprHVr2KnWYWcUVj2DMootvQJt-pLkKaiAPfjOilODMpC969RuPXvt2ZwyzUXQf7Q/contemporary-websites-header-background.jpg?format=1500w");
+            height: 80px;
+            color: white;
+        }
+
+        #navbar>#left {
+            margin-left: 40px;
+        }
+
+        #navbar>#right {
+            margin-right: 40px;
+        }
+
+        #navbar>#right>a {
+            margin: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            /* background-color: white; */
+            color:black;
+        }
+
+        main {
+            padding: 40px;
+            height: 80%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        table {
+            width: 100%;
+            border: solid teal 2px;
+        }
+        #pay, #edit {
+            color: teal;
+        }
+
+        #cancel {
+            color: teal;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <h3><%= data.getUserName() %> </h3>
+        <main>
+            <a href="/pay">Pay</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>No. Transaksi</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%data.Items.forEach((product, index)=>{%>
+                        <tr>
+                            <td><%=index + 1%></td>
+                            <td><%=product.name%></td>
+                            <td><%=formatPrice(product.price)%></td>
+                            <td><%=product.Transaction.quantity%></td>
+                            <td><%=formatPrice(product.Transaction.totalPrice)%></td>
+                            <td><%=product.Transaction.paid_status === false ? 'not paid' : 'paid'%></td>
+                            <td><%=product.Transaction.TransactionId%></td>
+                            <td>
+                                <a href="/cancel/<%=product.id%>"" id="cancel">Cancel |</a>
+                                <a href="/pay/<%=product.id%>" id="pay">Pay |</a>
+                                <a href="/cart/edit/<%=product.id%>" id="edit">Edit</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </main>
+</body>
+
+</html>

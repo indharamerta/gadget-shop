@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = 3000
 const session = require('express-session')
 
 app.use(session({
@@ -19,6 +19,5 @@ app.use(express.static('public'))
 
 const router = require('./routers')
 app.use('', router)
-app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`)
-})
+
+app.listen(PORT, () => { console.log(`Server run at http://localhost:${PORT}`) })

@@ -1,2 +1,1 @@
-# gadget-shop
-pair project phase 1
+# pair_project
