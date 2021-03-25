@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     getUserName(){
-      return `Hallo ${this.username}`
+      return `Hallo ${this.username}!`
     }
     static associate(models) {
       // define association here
