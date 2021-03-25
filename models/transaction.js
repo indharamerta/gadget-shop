@@ -39,17 +39,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   Transaction.beforeUpdate((instance, opt) => {
-    if(!instance.totalPrice) {
-      if (instance.ItemId === 1) {
-        instance.totalPrice = instance.quantity * 18000000
-      } else if (instance.ItemId === 2) {
-        instance.totalPrice = instance.quantity * 15000000
-      } else if (instance.ItemId === 3) {
-        instance.totalPrice = instance.quantity * 12000000
-      } else if (instance.ItemId === 4) {
-        instance.totalPrice = instance.quantity * 20000000
-      }
+    if (instance.ItemId === 1) {
+      instance.totalPrice = instance.quantity * 18000000;
+    } else if (instance.ItemId === 2) {
+      instance.totalPrice = instance.quantity * 15000000;
+    } else if (instance.ItemId === 3) {
+      instance.totalPrice = instance.quantity * 12000000;
+    } else if (instance.ItemId === 4) {
+      instance.totalPrice = instance.quantity * 20000000;
     }
-  })
+  });
   return Transaction;
 };
