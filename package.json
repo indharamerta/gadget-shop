@@ -1,0 +1,29 @@
+{
+  "name": "gadget-shop",
+  "version": "1.0.0",
+  "description": "pair project phase 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasaifox/gadget-shop.git"
+  },
+  "keywords": [],
+  "author": "kasaifox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasaifox/gadget-shop/issues"
+  },
+  "homepage": "https://github.com/kasaifox/gadget-shop#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "nodemailer": "^6.5.0",
+    "pg": "^8.5.1",
+    "sequelize": "^6.6.2"
+  }
+}
