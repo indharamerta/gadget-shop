@@ -1,24 +1,24 @@
 {
-  "name": "pair_project",
+  "name": "gadget-shop",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "pair project phase 1",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wibowo-laks/pair_project.git"
+    "url": "git+https://github.com/kasaifox/gadget-shop.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "kasaifox",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wibowo-laks/pair_project/issues"
+    "url": "https://github.com/kasaifox/gadget-shop/issues"
   },
-  "homepage": "https://github.com/wibowo-laks/pair_project#readme",
+  "homepage": "https://github.com/kasaifox/gadget-shop#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
