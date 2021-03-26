@@ -6,7 +6,6 @@ class Controller {
   static home(req, res) {
     Item.findAll()
       .then((data) => {
-        // res.send(data)
         res.render("home", { data });
       })
       .catch((err) => res.send(err));
@@ -20,7 +19,6 @@ class Controller {
 
   static loginPOST(req, res) {
     const { username, password } = req.body;
-    // console.log(req.body)
 
     User.findOne({ where: { username } })
       .then((user) => {
@@ -32,7 +30,6 @@ class Controller {
             req.session.userId = user.id;
             req.session.username = user.username;
             req.session.userEmail = user.email;
-            // console.log('session', req.session)
 
             res.redirect("/");
           } else {
@@ -78,20 +75,6 @@ class Controller {
       });
   }
 
-  // static edit(req, res) {
-  //     let id = +req.params.id
-  //     let user;
-  //     User.findByPk(id)
-  //         .then(data => {
-  //             user = data;
-  //             return Item.findAll()
-  //         })
-  //         .then(data => {
-  //             let item = data
-  //             res.render('edit-form', { item, user })
-  //         })
-  //         .catch(err => res.send(err))
-  // }
   static showTransaction(req, res) {
     Transaction.findAll({
       include: [User, Item],
@@ -118,21 +101,18 @@ class Controller {
       TransactionId: +id,
       totalPrice: req.body.totalPrice,
     };
-    // console.log(req.session)
+
     Transaction.create(order)
-      // res.send(order)
+
       .then(() => res.redirect("/"))
       .catch((err) => res.send(err));
   }
 
   static productDetail(req, res) {
     const id = parseInt(req.params.id_product);
-    // console.log(req.params)
 
     Item.findByPk(id)
       .then((data) => {
-        // console.log(data)
-        // res.send(data)
         res.render("product-buy", { data });
       })
       .catch((err) => res.send(err));
@@ -140,7 +120,6 @@ class Controller {
 
   static cartUser(req, res) {
     let userId = req.session.userId;
-    // console.log(req.session)
 
     User.findOne({
       where: { id: userId },
@@ -156,16 +135,11 @@ class Controller {
   static pay(req, res) {
     let userId = req.session.userId;
     let productId = +req.params.id_product;
-    // console.log(req.session)
-    // console.log('product', productId)
-    // console.log('user', userId)
     Transaction.findOne({
       where: { UserId: userId, ItemId: productId },
       order: [["id", "ASC"]],
     })
       .then((data) => {
-        // res.send(data)
-
         nodemailer.createTestAccount((err, account) => {
           if (err) {
             console.log("failed to create testing account" + err.message);
@@ -196,7 +170,6 @@ class Controller {
             }
 
             console.log("Message sent: $s" + info.messageId);
-            // console.log('Message sent: $s' + info.messageId)
           });
         });
 
@@ -207,20 +180,6 @@ class Controller {
       .catch((err) => res.send(err));
   }
 
-  // static cancel(req, res) {
-  //     let userId = req.session.userId
-  //     let productId = +req.params.id_product
-  //     // console.log(req.session)
-  //     console.log(productId)
-
-  //     Transaction.destroy({
-  //         where: { id: userId, ItemId: productId }
-  //     })
-  //         .then(data => {
-  //             redirect('/cart')
-  //         })
-  //         .catch(err => res.send(err))
-  // }
   static cancel(req, res) {
     let TransactionId = +req.params.id_product;
     Transaction.destroy({ where: { TransactionId } })
@@ -244,15 +203,16 @@ class Controller {
 
   static editPost(req, res) {
     let TransactionId = +req.params.id_product;
-    Transaction.findOne({where: { TransactionId }})
+    Transaction.findOne({ where: { TransactionId } })
       .then((data) => {
         let value = {
           ItemId: data.ItemId,
-          quantity: +req.body.quantity };
+          quantity: +req.body.quantity,
+        };
         Transaction.update(value, {
           where: { TransactionId },
-          individualHooks: true
-        })
+          individualHooks: true,
+        });
       })
       .then(() => res.redirect("/cart"))
       .catch((err) => res.send(err));
