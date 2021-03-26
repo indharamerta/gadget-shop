@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smartphone</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #navbar {
+        display: flex;
+        justify-content: space-between;
+        /* background-color: grey; */
+        background-image: url("https://images.squarespace-cdn.com/content/v1/5570a318e4b02d3071ca7d2b/1546899929819-ATM3NQV1WJPGQU61M25V/ke17ZwdGBToddI8pDm48kGit3PbRBnY1AnbAN1sF0EYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dsprHVr2KnWYWcUVj2DMootvQJt-pLkKaiAPfjOilODMpC969RuPXvt2ZwyzUXQf7Q/contemporary-websites-header-background.jpg?format=1500w");
+        align-items: center;
+        height: 80px;
+      }
+
+      #navbar > #left {
+        margin-left: 40px;
+      }
+
+      #navbar > #right {
+        margin-right: 40px;
+      }
+
+      #navbar > #right > a {
+        margin: 0 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      a:hover {
+        /* background-color: white; */
+        color: black;
+      }
+
+      main {
+        padding: 40px;
+        display: flex;
+        flex-direction: row;
+      }
+
+      #card {
+        width: 350px;
+        height: 450px;
+        border: 3px solid teal;
+        border-radius: 20px;
+        background-color: rgba(255, 209, 182, 0.1);
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+      }
+
+      .card {
+        transition: 0.8s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: scale(1);
+        box-shadow: 5px 5px 15px;
+      }
+
+      #card > #gambarProduk {
+        width: 100%;
+        height: 80%;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        border-radius: 10px 10px 0 0;
+        /* background-color: white; */
+      }
+
+      .gambar {
+        transition: 0.5s ease;
+        cursor: pointer;
+      }
+
+      .gambar:hover {
+        transform: scale(1.5);
+      }
+
+      #card > #detail {
+        width: 100%;
+        flex: 1;
+        padding: 5px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* align-items: center; */
+      }
+
+      h4 {
+        color: grey;
+      }
+
+      #buy {
+        /* border: solid turquoise 2px; */
+        border-radius: 20px;
+        /* color: green; */
+        padding: 10px;
+        /* width: 200px; */
+        background-color: orange;
+        margin-left: 35px;
+        margin-bottom: 5px;
+      }
+
+      #price {
+        display: flex;
+        /* flex-direction: row; */
+        /* justify-content: space-between; */
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- include('./partials/navbar.ejs') %>
+    <main>
+      <% data.forEach(product=>{%>
+      <div id="card" class="card">
+        <div
+          id="gambarProduk"
+          class="gambar"
+          style="background-image: url(<%=product.image%>)"
+        ></div>
+        <div id="detail">
+          <h3><%=product.name%></h3>
+          <div id="price">
+            <h4><%=formatPrice(product.price)%></h4>
+            <a href="/buy/<%=product.id%>" id="buy">Buy</a>
+          </div>
+        </div>
+      </div>
+      <% })%>
+    </main>
+  </body>
+</html>
